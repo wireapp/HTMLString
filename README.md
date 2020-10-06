@@ -1,10 +1,7 @@
 <p align="center">
-    <img src="https://github.com/alexaubry/HTMLString/raw/swift4/.github/logo.png" alt="HTMLString" />
+    <img src="https://github.com/alexaubry/HTMLString/raw/main/.github/logo.png" alt="HTMLString" />
     <a>
         <img src="https://img.shields.io/badge/Swift-5.0-ee4f37.svg" alt="Swift 5.0" />
-    </a>
-    <a href="https://travis-ci.org/alexaubry/HTMLString">
-        <img src="https://travis-ci.org/alexaubry/HTMLString.svg?branch=swift4" alt="Build Status" />
     </a>
     <a href="https://cocoapods.org/pods/HTMLString">
         <img src="https://img.shields.io/cocoapods/v/HTMLString.svg" alt="CocoaPods" />
@@ -13,7 +10,7 @@
         <img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible" />
     </a>
     <a href="https://twitter.com/_alexaubry">
-        <img src="https://github.com/alexaubry/HTMLString/raw/swift4/.github/contact-badge.svg?sanitize=true" alt="Contact : @_alexaubry" />
+        <img src="https://github.com/alexaubry/HTMLString/raw/main/.github/contact-badge.svg?sanitize=true" alt="Contact : @_alexaubry" />
     </a>
 </p>
 
@@ -28,11 +25,13 @@
 &#009989; | Fully unit tested
 &#009889; | Fast
 &#128218; | [Documented](https://alexaubry.github.io/HTMLString/)
-&#129302; | [Compatible with Objective-C](https://github.com/alexaubry/HTMLString/tree/master/README.md#objective%2Dc-api)
+&#129302; | [Compatible with Objective-C](https://github.com/alexaubry/HTMLString/tree/main/README.md#objective%2Dc-api)
 
 ## Supported Platforms
 
-- iOS 8.0+
+This package requires Swift 5 and Xcode 12.
+
+- iOS 9.0+
 - macOS 10.10+
 - tvOS 9.0+
 - watchOS 2.0+
@@ -45,7 +44,7 @@
 Add this line to your `Package.swift` :
 
 ~~~swift
-.Package(url: "https://github.com/alexaubry/HTMLString", majorVersion: 5, minor: 0)
+.Package(url: "https://github.com/alexaubry/HTMLString", from: "6.0.0")
 ~~~
 
 ### CocoaPods
@@ -53,7 +52,7 @@ Add this line to your `Package.swift` :
 Add this line to your `Podfile`:
 
 ~~~ruby
-pod 'HTMLString', '~> 5.0'
+pod 'HTMLString', '~> 6.0'
 ~~~
 
 ### Carthage
@@ -61,7 +60,7 @@ pod 'HTMLString', '~> 5.0'
 Add this line to your Cartfile:
 
 ~~~
-github "alexaubry/HTMLString" ~> 5.0
+github "alexaubry/HTMLString" ~> 6.0
 ~~~
 
 ## Usage
@@ -76,8 +75,8 @@ When a character is not supported into the specified encoding, the library will 
 
 You can choose between ASCII and Unicode escaping:
 
-- Use the `addingASCIIEntities` property to escape for ASCII-encoded content
-- Use the `addingUnicodeEntities` property to escape for Unicode-compatible content
+- Use the `addingASCIIEntities` function to escape for ASCII-encoded content
+- Use the `addingUnicodeEntities` function to escape for Unicode-compatible content
 
 > &#128161; **Pro Tip**: When your content supports UTF-8 or UTF-16, use Unicode escaping as it is faster and produces a less bloated output.
 
@@ -87,17 +86,17 @@ You can choose between ASCII and Unicode escaping:
 import HTMLString
 
 let emoji = "My favorite emoji is 🙃"
-let escapedEmoji = emoji.addingASCIIEntities // "My favorite emoji is &#128579;"
-let noNeedToEscapeThatEmoji = emoji.addingUnicodeEntities // "My favorite emoji is 🙃"
+let escapedEmoji = emoji.addingASCIIEntities() // "My favorite emoji is &#128579;"
+let noNeedToEscapeThatEmoji = emoji.addingUnicodeEntities() // "My favorite emoji is 🙃"
 
 let snack = "Fish & Chips"
-let escapedSnack = snack.addingASCIIEntities // "Fish &#038; Chips"
-let weAlsoNeedToEscapeThisSnack = snack.addingUnicodeEntities // "Fish &#038; Chips"
+let escapedSnack = snack.addingASCIIEntities() // "Fish &#038; Chips"
+let weAlsoNeedToEscapeThisSnack = snack.addingUnicodeEntities() // "Fish &#038; Chips"
 ~~~
 
 ### &#128221; Removing HTML Entities (Unescape)
 
-To remove all the HTML entities from a String, use the `removingHTMLEntities` property.
+To remove all the HTML entities from a String, use the `removingHTMLEntities` function.
 
 #### Example
 
@@ -105,15 +104,15 @@ To remove all the HTML entities from a String, use the `removingHTMLEntities` pr
 import HTMLString
 
 let escapedEmoji = "My favorite emoji is &#x1F643;"
-let emoji = escapedEmoji.removingHTMLEntities // "My favorite emoji is 🙃"
+let emoji = escapedEmoji.removingHTMLEntities() // "My favorite emoji is 🙃"
 
 let escapedSnack = "Fish &amp; Chips"
-let snack = escapedSnack.removingHTMLEntities // "Fish & Chips"
+let snack = escapedSnack.removingHTMLEntities() // "Fish & Chips"
 ~~~
 
 ## Objective-C API
 
-With Obj-C Mix and Match, you can import and use the `HTMLString` module from in Objective-C code.
+With Obj-C interoperability, you can import and use the `HTMLString` module from in Objective-C code.
 
 The library introduces a set of Objective-C specific APIs as categories on the `NSString` type:
 
@@ -147,7 +146,7 @@ NSString *snack = [escapedSnack stringByRemovingHTMLEntities]; // "Fish & Chips"
 
 ## Author
 
-- Alexis Aubry, me@alexaubry.fr
+- Alexis Aubry-Akers, hi@alexisonline.dev
 - You can find me on Twitter: [@_alexaubry](https://twitter.com/_alexaubry)
 
 ## License
